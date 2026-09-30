@@ -13,7 +13,7 @@
     <header class="max-w-7xl mx-auto mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-zinc-800 pb-6">
         <div>
             <h1 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
-                <i class="fa-solid font-sharp fa-film text-red-500"></i> Japanese Commercial Archive
+                <i class="fa-solid fa-film text-red-500"></i> Japanese Commercial Archive
             </h1>
             <p class="text-zinc-400 text-sm mt-1">Curated collection of award-winning Japanese TV & Web Commercials</p>
         </div>
@@ -24,7 +24,7 @@
 
     <!-- Filters & Search -->
     <section class="max-w-7xl mx-auto mb-8 flex flex-wrap gap-4">
-        <input type="text" id="searchInput" placeholder="Search by title, brand, agency..." class="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-red-500 flex-1 min-w-[240px]">
+        <input type="text" id="searchInput" placeholder="Search by title, agency, or client..." class="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-red-500 flex-1 min-w-[240px]">
         
         <select id="yearFilter" class="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-red-500">
             <option value="ALL">All Years</option>
@@ -40,35 +40,33 @@
         <select id="formatFilter" class="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-red-500">
             <option value="ALL">All Formats</option>
             <option value="Online Film">Online Film</option>
-            <option value="TV CM">TV Commercial</option>
+            <option value="TV CM">TV CM</option>
         </select>
     </section>
 
     <!-- Grid Layout -->
     <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="archiveGrid">
-        <!-- Project Cards will render here -->
+        <!-- Cards rendered here -->
     </main>
 
-    <!-- Data Script -->
     <script>
-        // Archive Dataset (Auto-Updated via Batches)
         const archiveData = [
             {
                 title: "Sumitomo Mitsui Banking Corporation – Olive: The Bankbook Person",
                 titleJp: "三井住友銀行 Olive『通帳の人』",
                 year: "2025",
-                award: "Grand Prix / Minister Award",
-                format: "Online Film",
+                award: "Grand Prix / Minister's Award",
+                format: "Online Film (60s)",
                 agency: "Dentsu",
                 production: "Tohoku Shinsha",
-                videoUrl: "https://www.youtube.com/watch?f_aka73X8qo"
+                videoUrl: "https://www.youtube.com/watch?v=f_aka73X8qo"
             },
             {
                 title: "McDonald's Japan – Fries: Tirori Mix 2025 (Ado x YOASOBI x Hoshimachi Suisei)",
-                titleJp: "マクドナルド ポテト『ティロリミックス 2025』",
+                titleJp: "マクドナルド『ティロリミックス 2025』",
                 year: "2025",
                 award: "ACC Gold",
-                format: "Online Film",
+                format: "Online Film (225s)",
                 agency: "Dentsu",
                 production: "Geek Pictures",
                 videoUrl: "https://www.youtube.com/watch?v=Nr5OEA1PvJ8"
@@ -78,10 +76,40 @@
                 titleJp: "大塚製薬 カロリーメイト『TeamMate』",
                 year: "2025",
                 award: "ACC Silver",
-                format: "Online Film",
+                format: "Online Film (210s)",
                 agency: "Hakuhodo",
                 production: "AOI Pro.",
                 videoUrl: "https://www.youtube.com/watch?v=54as9lZZG-8"
+            },
+            {
+                title: "Toyota Motor Corporation – Road Rage Press Conference",
+                titleJp: "トヨタ自動車『あおり運転囲み取材』",
+                year: "2025",
+                award: "ACC Silver",
+                format: "Online Film (178s)",
+                agency: "Toyota Conic Pro",
+                production: "C3 Film",
+                videoUrl: "https://www.youtube.com/watch?v=1u44_lP3H50"
+            },
+            {
+                title: "Sony Interactive Entertainment – PlayStation: Project MEMORY CARD",
+                titleJp: "PlayStation『Project: GEHEUGENKAART』",
+                year: "2025",
+                award: "ACC Finalist",
+                format: "Online Film (660s)",
+                agency: "SIX / Hakuhodo",
+                production: "Geek Pictures",
+                videoUrl: "https://www.youtube.com/watch?v=A2dY_wX5X7E"
+            },
+            {
+                title: "Asahi Broadcasting Television – M-1 Grand Prix 2024 x ASIAN KUNG-FU GENERATION",
+                titleJp: "M-1グランプリ2024『Rewrite』",
+                year: "2025",
+                award: "ACC Finalist",
+                format: "TV CM / Web Promo (240s)",
+                agency: "Dentsu",
+                production: "& Creatist / Dentsu Creative X",
+                videoUrl: "https://www.youtube.com/watch?v=Jm2N1o8uGv0"
             }
         ];
 
@@ -118,10 +146,8 @@
             });
         }
 
-        // Initial Render
         renderGrid(archiveData);
 
-        // Search & Filter Handler
         function filterData() {
             const search = document.getElementById('searchInput').value.toLowerCase();
             const year = document.getElementById('yearFilter').value;
@@ -130,7 +156,7 @@
             const filtered = archiveData.filter(item => {
                 const matchesSearch = item.title.toLowerCase().includes(search) || item.agency.toLowerCase().includes(search);
                 const matchesYear = year === 'ALL' || item.year === year;
-                const matchesFormat = format === 'ALL' || item.format === format;
+                const matchesFormat = format === 'ALL' || item.format.includes(format);
                 return matchesSearch && matchesYear && matchesFormat;
             });
 
