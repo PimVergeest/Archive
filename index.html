@@ -1,171 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Japanese Commercial Inspiration Archive</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-</head>
-<body class="bg-zinc-950 text-zinc-100 min-h-screen p-6 md:p-12">
-
-    <!-- Header -->
-    <header class="max-w-7xl mx-auto mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-zinc-800 pb-6">
-        <div>
-            <h1 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
-                <i class="fa-solid fa-film text-red-500"></i> Japanese Commercial Archive
-            </h1>
-            <p class="text-zinc-400 text-sm mt-1">Curated collection of award-winning Japanese TV & Web Commercials</p>
-        </div>
-        <div class="flex items-center gap-3">
-            <span id="total-count" class="bg-zinc-800 border border-zinc-700 text-zinc-300 text-xs px-3 py-1.5 rounded-full font-mono">0 Projects</span>
-        </div>
-    </header>
-
-    <!-- Filters & Search -->
-    <section class="max-w-7xl mx-auto mb-8 flex flex-wrap gap-4">
-        <input type="text" id="searchInput" placeholder="Search by title, agency, or client..." class="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-red-500 flex-1 min-w-[240px]">
-        
-        <select id="yearFilter" class="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-red-500">
-            <option value="ALL">All Years</option>
-            <option value="2025">2025</option>
-            <option value="2022">2022</option>
-            <option value="2021">2021</option>
-            <option value="2012">2012</option>
-            <option value="2011">2011</option>
-            <option value="2002">2002</option>
-            <option value="2001">2001</option>
-        </select>
-
-        <select id="formatFilter" class="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-red-500">
-            <option value="ALL">All Formats</option>
-            <option value="Online Film">Online Film</option>
-            <option value="TV CM">TV CM</option>
-        </select>
-    </section>
-
-    <!-- Grid Layout -->
-    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="archiveGrid">
-        <!-- Cards rendered here -->
-    </main>
-
-    <script>
-        const archiveData = [
-            {
-                title: "Sumitomo Mitsui Banking Corporation – Olive: The Bankbook Person",
-                titleJp: "三井住友銀行 Olive『通帳の人』",
-                year: "2025",
-                award: "Grand Prix / Minister's Award",
-                format: "Online Film (60s)",
-                agency: "Dentsu",
-                production: "Tohoku Shinsha",
-                videoUrl: "https://www.youtube.com/watch?v=f_aka73X8qo"
-            },
-            {
-                title: "McDonald's Japan – Fries: Tirori Mix 2025 (Ado x YOASOBI x Hoshimachi Suisei)",
-                titleJp: "マクドナルド『ティロリミックス 2025』",
-                year: "2025",
-                award: "ACC Gold",
-                format: "Online Film (225s)",
-                agency: "Dentsu",
-                production: "Geek Pictures",
-                videoUrl: "https://www.youtube.com/watch?v=Nr5OEA1PvJ8"
-            },
-            {
-                title: "Otsuka Pharmaceutical – CalorieMate: TeamMate (If You Weren't There)",
-                titleJp: "大塚製薬 カロリーメイト『TeamMate』",
-                year: "2025",
-                award: "ACC Silver",
-                format: "Online Film (210s)",
-                agency: "Hakuhodo",
-                production: "AOI Pro.",
-                videoUrl: "https://www.youtube.com/watch?v=54as9lZZG-8"
-            },
-            {
-                title: "Toyota Motor Corporation – Road Rage Press Conference",
-                titleJp: "トヨタ自動車『あおり運転囲み取材』",
-                year: "2025",
-                award: "ACC Silver",
-                format: "Online Film (178s)",
-                agency: "Toyota Conic Pro",
-                production: "C3 Film",
-                videoUrl: "https://www.youtube.com/watch?v=1u44_lP3H50"
-            },
-            {
-                title: "Sony Interactive Entertainment – PlayStation: Project MEMORY CARD",
-                titleJp: "PlayStation『Project: GEHEUGENKAART』",
-                year: "2025",
-                award: "ACC Finalist",
-                format: "Online Film (660s)",
-                agency: "SIX / Hakuhodo",
-                production: "Geek Pictures",
-                videoUrl: "https://www.youtube.com/watch?v=A2dY_wX5X7E"
-            },
-            {
-                title: "Asahi Broadcasting Television – M-1 Grand Prix 2024 x ASIAN KUNG-FU GENERATION",
-                titleJp: "M-1グランプリ2024『Rewrite』",
-                year: "2025",
-                award: "ACC Finalist",
-                format: "TV CM / Web Promo (240s)",
-                agency: "Dentsu",
-                production: "& Creatist / Dentsu Creative X",
-                videoUrl: "https://www.youtube.com/watch?v=Jm2N1o8uGv0"
-            }
-        ];
-
-        function renderGrid(data) {
-            const grid = document.getElementById('archiveGrid');
-            document.getElementById('total-count').innerText = `${data.length} Projects`;
-            grid.innerHTML = '';
-
-            data.forEach(item => {
-                const card = document.createElement('div');
-                card.className = "bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-zinc-700 transition flex flex-col justify-between";
-                
-                card.innerHTML = `
-                    <div>
-                        <div class="flex items-center justify-between text-xs text-zinc-400 mb-3">
-                            <span class="bg-red-950/80 text-red-400 border border-red-800/50 px-2 py-0.5 rounded font-mono">${item.year}</span>
-                            <span class="text-zinc-500 font-medium">${item.format}</span>
-                        </div>
-                        <h2 class="text-base font-semibold text-white mb-1 line-clamp-2">${item.title}</h2>
-                        <p class="text-xs text-zinc-500 mb-4">${item.titleJp || ''}</p>
-                        
-                        <div class="space-y-1 text-xs text-zinc-400 border-t border-zinc-800/60 pt-3 mb-4">
-                            <div><span class="text-zinc-500">Award:</span> ${item.award}</div>
-                            <div><span class="text-zinc-500">Agency:</span> ${item.agency}</div>
-                            <div><span class="text-zinc-500">Production:</span> ${item.production}</div>
-                        </div>
-                    </div>
-
-                    <a href="${item.videoUrl}" target="_blank" class="w-full bg-zinc-800 hover:bg-red-600 text-white text-xs font-medium py-2.5 rounded-lg flex items-center justify-center gap-2 transition">
-                        <i class="fa-solid fa-play"></i> Watch Commercial
-                    </a>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        renderGrid(archiveData);
-
-        function filterData() {
-            const search = document.getElementById('searchInput').value.toLowerCase();
-            const year = document.getElementById('yearFilter').value;
-            const format = document.getElementById('formatFilter').value;
-
-            const filtered = archiveData.filter(item => {
-                const matchesSearch = item.title.toLowerCase().includes(search) || item.agency.toLowerCase().includes(search);
-                const matchesYear = year === 'ALL' || item.year === year;
-                const matchesFormat = format === 'ALL' || item.format.includes(format);
-                return matchesSearch && matchesYear && matchesFormat;
-            });
-
-            renderGrid(filtered);
-        }
-
-        document.getElementById('searchInput').addEventListener('input', filterData);
-        document.getElementById('yearFilter').addEventListener('change', filterData);
-        document.getElementById('formatFilter').addEventListener('change', filterData);
-    </script>
-</body>
-</html>
+const archiveData = [
+    {
+        title: "SMBC Olive – The Bankbook Person",
+        titleJp: "三井住友銀行 Olive『通帳的人』",
+        year: "2025",
+        award: "Grand Prix / Minister's Award",
+        format: "Online Film (60s)",
+        agency: "Dentsu",
+        production: "Tohoku Shinsha",
+        bannerUrl: "https://img.youtube.com/vi/f_aka73X8qo/hqdefault.jpg",
+        videoUrl: "https://www.youtube.com/watch?v=f_aka73X8qo",
+        description: "A surreal, comedic story following a personified paper bankbook trying to find its place in a world dominated by digital mobile banking."
+    },
+    {
+        title: "McDonald's Japan – Tirori Mix 2025 (Ado x YOASOBI x Hoshimachi Suisei)",
+        titleJp: "マクドナルド ポテト『ティロリミックス 2025』",
+        year: "2025",
+        award: "ACC Gold",
+        format: "Online Film (225s)",
+        agency: "Dentsu",
+        production: "Geek Pictures",
+        bannerUrl: "https://img.youtube.com/vi/Nr5OEA1PvJ8/hqdefault.jpg",
+        videoUrl: "https://www.youtube.com/watch?v=Nr5OEA1PvJ8",
+        description: "A high-octane anime music video combining popular vocal tracks with McDonald's iconic French fry fryer timer alert."
+    },
+    {
+        title: "Otsuka Pharmaceutical – CalorieMate: TeamMate",
+        titleJp: "大塚製薬 カロリーメイト『TeamMate』",
+        year: "2025",
+        award: "ACC Silver",
+        format: "Online Film (210s)",
+        agency: "Hakuhodo",
+        production: "AOI Pro.",
+        bannerUrl: "https://img.youtube.com/vi/54as9lZZG-8/hqdefault.jpg",
+        videoUrl: "https://www.youtube.com/watch?v=54as9lZZG-8",
+        description: "A cinematic coming-of-age journey depicting high school athletes training relentlessly together through passion and fatigue."
+    },
+    {
+        title: "Toyota Motor Corporation – Road Rage Press Conference",
+        titleJp: "トヨタ自動車『あおり運転囲み取材』",
+        year: "2025",
+        award: "ACC Silver",
+        format: "Online Film (178s)",
+        agency: "Toyota Conic Pro",
+        production: "C3 Film",
+        bannerUrl: "https://img.youtube.com/vi/1u44_lP3H50/hqdefault.jpg",
+        videoUrl: "https://www.youtube.com/watch?v=1u44_lP3H50",
+        description: "A satire framed as an intense press media scrum addressing road safety awareness and driving etiquette."
+    },
+    {
+        title: "Sony Interactive Entertainment – PlayStation: Project MEMORY CARD",
+        titleJp: "PlayStation × YOASOBI『PLAYERS / Project MEMORY CARD』",
+        year: "2025",
+        award: "ACC Finalist",
+        format: "Online Film (660s)",
+        agency: "SIX / Hakuhodo",
+        production: "Geek Pictures",
+        bannerUrl: "https://img.youtube.com/vi/CnEWGwxxd5o/hqdefault.jpg",
+        videoUrl: "https://www.youtube.com/watch?v=CnEWGwxxd5o",
+        description: "A massive retrospective homage celebrating 30 years of iconic video game memories and players' emotional connections."
+    },
+    {
+        title: "Asahi Broadcasting – M-1 Grand Prix 2024 x ASIAN KUNG-FU GENERATION",
+        titleJp: "M-1グランプリ2024 × ASIAN KUNG-FU GENERATION『リライト』",
+        year: "2025",
+        award: "ACC Finalist",
+        format: "TV CM / Web Promo (240s)",
+        agency: "Dentsu",
+        production: "& Creatist / Dentsu Creative X",
+        bannerUrl: "https://img.youtube.com/vi/3isIlJmwfPg/hqdefault.jpg",
+        videoUrl: "https://www.youtube.com/watch?v=3isIlJmwfPg",
+        description: "An energetic hype film featuring Japanese comedy duos preparing for the high-stakes national stand-up finals set to rock music."
+    },
+    {
+        title: "Otsuka Pharmaceutical – Pocari Sweat: Demo Kumo ga Aeta",
+        titleJp: "大塚製薬 ポカリスエット『でも心が揺れた』",
+        year: "2021",
+        award: "ACC Craft Award (Director/Art)",
+        format: "TV CM / Web Film (60s)",
+        agency: "Dentsu",
+        production: "Spoon",
+        bannerUrl: "https://img.youtube.com/vi/lcda5S_W9uY/hqdefault.jpg",
+        videoUrl: "https://www.youtube.com/watch?v=lcda5S_W9uY",
+        description: "A visually breathtaking practical-effects commercial featuring students running through a physically moving, undulating hallway set."
+    },
+    {
+        title: "Suntory Boss Coffee – 365 STEPS (Alien Jones)",
+        titleJp: "サントリー BOSS『365 STEPS』",
+        year: "2021",
+        award: "ACC Craft Award (Sound Design)",
+        format: "TV CM (30s)",
+        agency: "Dentsu",
+        production: "Tohoku Shinsha",
+        bannerUrl: "https://img.youtube.com/vi/9k3cO726884/hqdefault.jpg",
+        videoUrl: "https://www.youtube.com/watch?v=9k3cO726884",
+        description: "Actor Tommy Lee Jones observes human perseverance and everyday Japanese work life through the eyes of an extraterrestrial visitor."
+    },
+    {
+        title: "Suntory Orangina – Richard Gere as Tora-san",
+        titleJp: "サントリー オランジーナ『寅さん』",
+        year: "2012",
+        award: "ACC Gold",
+        format: "TV CM (30s)",
+        agency: "Yomiko Advertising",
+        production: "Tohoku Shinsha",
+        bannerUrl: "https://img.youtube.com/vi/1O6O_O144Xo/hqdefault.jpg",
+        videoUrl: "https://www.youtube.com/watch?v=1O6O_O144Xo",
+        description: "Hollywood star Richard Gere embodies Japan's iconic folk cinematic hero Tora-san in a whimsical French-Japanese village setting."
+    }
+];
