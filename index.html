@@ -1,230 +1,439 @@
-const archiveData = [
-    {
-        title: "Pocari Sweat – Demo Kumo ga Aeta (Moving Hallway)",
-        titleJp: "大塚製薬 ポカリスエット『でも心が揺れた』",
-        year: "2021",
-        award: "ACC Craft Award (Director/Art)",
-        format: "TV CM / Web Film (60s)",
-        agency: "Dentsu",
-        production: "Spoon",
-        bannerUrl: "https://img.youtube.com/vi/JUoqe0f1-B0/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=JUoqe0f1-B0",
-        description: "A visually stunning practical-effects commercial set on a 85-meter moving undulating set, capturing the emotional journey of high school youth."
-    },
-    {
-        title: "CalorieMate – See You Light Up / TeamMate",
-        titleJp: "大塚製薬 カロリーメイト『見えないもの』",
-        year: "2021",
-        award: "ACC Gold",
-        format: "TV CM (120s)",
-        agency: "Hakuhodo",
-        production: "AOI Pro.",
-        bannerUrl: "https://img.youtube.com/vi/iYa7zCARahk/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=iYa7zCARahk",
-        description: "An emotional cinematic portrait following students studying and training relentlessly through hardship, highlighting unseen dedication."
-    },
-    {
-        title: "Suntory Boss Coffee – Alien Jones / 365 Steps",
-        titleJp: "サントリー BOSS『宇宙人ジョーンズ・365 STEPS』",
-        year: "2021",
-        award: "ACC Craft Award (Sound/Director)",
-        format: "TV CM (30s)",
-        agency: "Dentsu",
-        production: "Tohoku Shinsha",
-        bannerUrl: "https://img.youtube.com/vi/o6IQdbEkaNI/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=o6IQdbEkaNI",
-        description: "Tommy Lee Jones continues his iconic role as an observing extraterrestrial examining the quiet perseverance of daily Japanese workers."
-    },
-    {
-        title: "Suntory Orangina – Richard Gere as Tora-san",
-        titleJp: "サントリー オランジーナ『寅さん』",
-        year: "2012",
-        award: "ACC Gold",
-        format: "TV CM (30s)",
-        agency: "Yomiko Advertising",
-        production: "Tohoku Shinsha",
-        bannerUrl: "https://img.youtube.com/vi/D-B52PV876I/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=D-B52PV876I",
-        description: "Hollywood legend Richard Gere embodies Japan's beloved cinematic folk hero Tora-san in a whimsical French countryside setting."
-    },
-    {
-        title: "Cup Noodle – Hungry? Series (Savage Wilderness)",
-        titleJp: "日清食品 カップヌードル『hungry?』",
-        year: "2002",
-        award: "Cannes Lions Grand Prix / ACC Winner",
-        format: "TV CM (30s)",
-        agency: "Hakuhodo",
-        production: "Tohoku Shinsha",
-        bannerUrl: "https://img.youtube.com/vi/z8w0SfCodpY/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=z8w0SfCodpY",
-        description: "A legendary comedic campaign depicting primitive humans encountering giant prehistoric beasts driven by primal hunger."
-    },
-    {
-        title: "SoftBank – White Family / Otosan-Dog Series",
-        titleJp: "ソフトバンク 白戸家『白戸家・お父さん』",
-        year: "2011",
-        award: "ACC Grand Prix",
-        format: "TV CM (30s)",
-        agency: "Dentsu",
-        production: "Tohoku Shinsha",
-        bannerUrl: "https://img.youtube.com/vi/YuEkPB-XYyo/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=YuEkPB-XYyo",
-        description: "One of Japan's longest-running television phenomena featuring a family whose stern patriarch happens to be a speaking Shiba Inu."
-    },
-    {
-        title: "Nike Japan – Impulse / Change the Game",
-        titleJp: "ナイキジャパン『動かしつづける。自分を。未来を。』",
-        year: "2020",
-        award: "ACC Gold / Spikes Asia",
-        format: "Online Film (120s)",
-        agency: "Wieden+Kennedy Tokyo",
-        production: "AOI Pro.",
-        bannerUrl: "https://img.youtube.com/vi/_gkZ6jhytb8/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=_gkZ6jhytb8",
-        description: "A bold, empowering narrative addressing social conformity and youth individuality through high-intensity sports choreography."
-    },
-    {
-        title: "Shiseido – High School Girl? (The Secret of High School Girls)",
-        titleJp: "資生堂『High School Girl? メイク女子の秘密』",
-        year: "2015",
-        award: "Cannes Gold Lion / ACC Grand Prix",
-        format: "Online Film (210s)",
-        agency: "Watts of Tokyo / Hakuhodo",
-        production: "Tohoku Shinsha",
-        bannerUrl: "https://img.youtube.com/vi/XYMBoypvR8A/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=XYMBoypvR8A",
-        description: "A viral sensation utilizing one single tracking shot that reveals a surprising twist on gender and cosmetic transformation."
-    },
-    {
-        title: "PlayStation – Gravity Cat (Gravity Rush 2)",
-        titleJp: "PlayStation『重力猫 / GRAVITY CAT』",
-        year: "2017",
-        award: "Cannes Gold Lion / ACC Grand Prix",
-        format: "Online Film (240s)",
-        agency: "Hakuhodo / SIX",
-        production: "Spoon",
-        bannerUrl: "https://img.youtube.com/vi/iDkR_Buda70/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=iDkR_Buda70",
-        description: "A technical feat shot in a practical rotatable apartment set where gravity shifts constantly for two sisters and their pet kitten."
-    },
-    {
-        title: "Tsuruya Roofing Tiles – Sticky Slapstick / Roof Defenders",
-        titleJp: "鶴弥 防災瓦『粘土瓦の男』",
-        year: "2019",
-        award: "ACC Gold",
-        format: "TV CM (60s)",
-        agency: "Dentsu Chubu",
-        production: "Taiyo Kikaku",
-        bannerUrl: "https://img.youtube.com/vi/J5kEiX7TTKk/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=J5kEiX7TTKk",
-        description: "A hilarious physical comedy demonstrating roof durability by casting actors as literal tiles weathering extreme typhoons."
-    },
-    {
-        title: "Nintendo Switch – Experiencing Together Everywhere",
-        titleJp: "任天堂 Nintendo Switch『ファースト・ルック』",
-        year: "2017",
-        award: "ACC Featured Archive",
-        format: "Online Promo (180s)",
-        agency: "Dentsu / Nintendo In-house",
-        production: "Geek Pictures",
-        bannerUrl: "https://img.youtube.com/vi/yLL3tfArVp8/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=yLL3tfArVp8",
-        description: "Sleek product reveal focusing on seamlessly transitioning gameplay from home television to portable lifestyle environments."
-    },
-    {
-        title: "Central Japan Railway – Christmas Express",
-        titleJp: "JR東海『シンデレラ・エクスプレス / クリスマス・エクスプレス』",
-        year: "1989",
-        award: "ACC Permanent Collection",
-        format: "TV CM (60s)",
-        agency: "Dentsu",
-        production: "Tohoku Shinsha",
-        bannerUrl: "https://img.youtube.com/vi/zFCkbut6ijM/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=zFCkbut6ijM",
-        description: "A timeless milestone in Japanese advertising capturing young lovers reuniting on bullet train station platforms for Christmas."
-    },
-    {
-        title: "Suntory Whisky – Hibiki: Glass Harmony",
-        titleJp: "サントリー ウイスキー響『Glass Harmony』",
-        year: "2014",
-        award: "ACC Craft / Design Award",
-        format: "Online Film (120s)",
-        agency: "Hakuhodo",
-        production: "AOI Pro.",
-        bannerUrl: "https://img.youtube.com/vi/K-TYsAHbb18/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=K-TYsAHbb18",
-        description: "An elegant, acoustic visual symphony playing musical notes using customized crystal whiskey glasses and water droplets."
-    },
-    {
-        title: "Kagome – Tomato Juice: Tomato Running Backpack",
-        titleJp: "カゴメ『ウェアラブル トマト』",
-        year: "2015",
-        award: "Cannes Bronze Lion / ACC Gold",
-        format: "Online Film (150s)",
-        agency: "Hakuhodo",
-        production: "AOI Pro.",
-        bannerUrl: "https://img.youtube.com/vi/L3Mezeu6we4/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=L3Mezeu6we4",
-        description: "A deadpan engineering prank introducing a mechanical wearable backpack that feeds fresh tomatoes to marathon runners."
-    },
-    {
-        title: "Glico – Pocky: Share Happiness (AKB48)",
-        titleJp: "江崎グリコ ポッキー『Share Happiness』",
-        year: "2010",
-        award: "ACC Winner",
-        format: "TV CM (30s)",
-        agency: "Dentsu",
-        production: "Tohoku Shinsha",
-        bannerUrl: "https://img.youtube.com/vi/HZQs1RHfwpM/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=HZQs1RHfwpM",
-        description: "High-energy pop dance choreography showcasing group unity and bright visual styling centered on iconic snack sticks."
-    },
-    {
-        title: "KFC Japan – Kentucky Christmas Tradition",
-        titleJp: "ケンタッキー『クリスマスはケンタッキー』",
-        year: "2018",
-        award: "Featured Archive",
-        format: "TV CM (30s)",
-        agency: "Hakuhodo",
-        production: "AOI Pro.",
-        bannerUrl: "https://img.youtube.com/vi/nCT1bIx37rs/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=nCT1bIx37rs",
-        description: "Warm holiday storytelling capturing Japan's unique cultural tradition of eating fried chicken during winter family gatherings."
-    },
-    {
-        title: "Toyota – ReBORN (Drive Your Dreams)",
-        titleJp: "トヨタ自動車『ReBORN・FUN TO DRIVE, AGAIN.』",
-        year: "2011",
-        award: "ACC Gold",
-        format: "TV CM (60s)",
-        agency: "Dentsu",
-        production: "Geek Pictures",
-        bannerUrl: "https://img.youtube.com/vi/WHw9uajFClw/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=WHw9uajFClw",
-        description: "A star-studded cinematic roadmap journey reimagining historical figures navigating modern Japanese highways."
-    },
-    {
-        title: "Soga Clothing – The Reverse Striptease",
-        titleJp: "SOGA『着るための反転』",
-        year: "2016",
-        award: "ACC Bronze",
-        format: "Online Film (90s)",
-        agency: "ADK",
-        production: "Taiyo Kikaku",
-        bannerUrl: "https://img.youtube.com/vi/eqa5pvTD9gg/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=eqa5pvTD9gg",
-        description: "Playful reverse-motion editing showing models getting fully dressed in high fashion through acrobatics."
-    },
-    {
-        title: "Mandom Gatsby – Moving Rubber (Styling Dance)",
-        titleJp: "マンダム ギャツビー『ムービングラバー』",
-        year: "2007",
-        award: "ACC Gold",
-        format: "TV CM (30s)",
-        agency: "Dentsu",
-        production: "Tohoku Shinsha",
-        bannerUrl: "https://img.youtube.com/vi/i-KYDTKIC_4/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=i-KYDTKIC_4",
-        description: "Iconic pop-culture commercial featuring rhythmic, eccentric hair styling routines set to catchy dance beats."
-    }
-];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Commercial Inspiration Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen p-6 md:p-12">
+
+    <!-- Header -->
+    <header class="max-w-7xl mx-auto mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-zinc-800 pb-6">
+        <div>
+            <h1 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
+                <i class="fa-solid fa-film text-red-500"></i> Japanese Commercial Archive
+            </h1>
+            <p class="text-zinc-400 text-sm mt-1">Curated library of award-winning Japanese TV & Web Commercials</p>
+        </div>
+        <div class="flex items-center gap-3">
+            <span id="total-count" class="bg-zinc-800 border border-zinc-700 text-zinc-300 text-xs px-3 py-1.5 rounded-full font-mono">0 Projects</span>
+        </div>
+    </header>
+
+    <!-- Filters & Search -->
+    <section class="max-w-7xl mx-auto mb-8 flex flex-wrap gap-4">
+        <input type="text" id="searchInput" placeholder="Search title, brand, agency, concept..." class="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-red-500 flex-1 min-w-[240px]">
+        
+        <select id="yearFilter" class="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-red-500">
+            <option value="ALL">All Years</option>
+            <option value="2025">2025</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2012">2012</option>
+            <option value="2011">2011</option>
+            <option value="2010">2010</option>
+            <option value="2007">2007</option>
+            <option value="2002">2002</option>
+            <option value="1989">1989</option>
+            <option value="Unknown">Unknown Year</option>
+        </select>
+
+        <select id="formatFilter" class="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-red-500">
+            <option value="ALL">All Formats</option>
+            <option value="Online Film">Online Film</option>
+            <option value="TV CM">TV CM</option>
+        </select>
+    </section>
+
+    <!-- Grid Layout -->
+    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="archiveGrid">
+        <!-- Cards render here dynamically -->
+    </main>
+
+    <script>
+        const archiveData = [
+            // ACC 2025 Batch
+            {
+                title: "SMBC Olive – The Bankbook Person",
+                titleJp: "三井住友銀行 Olive『通帳の人』",
+                year: "2025",
+                award: "Grand Prix / Minister's Award",
+                format: "Online Film",
+                agency: "Dentsu",
+                production: "Tohoku Shinsha",
+                bannerUrl: "https://img.youtube.com/vi/f_aka73X8qo/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=f_aka73X8qo",
+                description: "A surreal, comedic story following a personified paper bankbook trying to find its place in a world dominated by digital mobile banking."
+            },
+            {
+                title: "McDonald's Japan – Tirori Mix 2025",
+                titleJp: "マクドナルド ポテト『ティロリミックス 2025』",
+                year: "2025",
+                award: "ACC Gold",
+                format: "Online Film",
+                agency: "Dentsu",
+                production: "Geek Pictures",
+                bannerUrl: "https://img.youtube.com/vi/Nr5OEA1PvJ8/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=Nr5OEA1PvJ8",
+                description: "A high-octane anime music video combining popular vocal tracks with McDonald's iconic French fry fryer timer alert."
+            },
+            {
+                title: "CalorieMate – TeamMate",
+                titleJp: "大塚製薬 カロリーメイト『TeamMate』",
+                year: "2025",
+                award: "ACC Silver",
+                format: "Online Film",
+                agency: "Hakuhodo",
+                production: "AOI Pro.",
+                bannerUrl: "https://img.youtube.com/vi/54as9lZZG-8/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=54as9lZZG-8",
+                description: "A cinematic coming-of-age journey depicting high school athletes training relentlessly together through passion and fatigue."
+            },
+            {
+                title: "Toyota – Road Rage Press Conference",
+                titleJp: "トヨタ自動車『あおり運転囲み取材』",
+                year: "2025",
+                award: "ACC Silver",
+                format: "Online Film",
+                agency: "Toyota Conic Pro",
+                production: "C3 Film",
+                bannerUrl: "https://img.youtube.com/vi/1u44_lP3H50/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=1u44_lP3H50",
+                description: "A satire framed as an intense press media scrum addressing road safety awareness and driving etiquette."
+            },
+            {
+                title: "PlayStation – Project MEMORY CARD",
+                titleJp: "PlayStation × YOASOBI『PLAYERS』",
+                year: "2025",
+                award: "ACC Finalist",
+                format: "Online Film",
+                agency: "SIX / Hakuhodo",
+                production: "Geek Pictures",
+                bannerUrl: "https://img.youtube.com/vi/CnEWGwxxd5o/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=CnEWGwxxd5o",
+                description: "A massive retrospective homage celebrating 30 years of iconic video game memories and players' emotional connections."
+            },
+            {
+                title: "M-1 Grand Prix 2024 x ASIAN KUNG-FU GENERATION",
+                titleJp: "M-1グランプリ2024『リライト』",
+                year: "2025",
+                award: "ACC Finalist",
+                format: "TV CM",
+                agency: "Dentsu",
+                production: "& Creatist",
+                bannerUrl: "https://img.youtube.com/vi/3isIlJmwfPg/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=3isIlJmwfPg",
+                description: "An energetic hype film featuring Japanese comedy duos preparing for the high-stakes national stand-up finals set to rock music."
+            },
+
+            // Playlist / Individual Link Extractions
+            {
+                title: "Pocari Sweat – Demo Kumo ga Aeta",
+                titleJp: "大塚製薬 ポカリスエット『でも心が揺れた』",
+                year: "2021",
+                award: "ACC Craft Award",
+                format: "TV CM",
+                agency: "Dentsu",
+                production: "Spoon",
+                bannerUrl: "https://img.youtube.com/vi/JUoqe0f1-B0/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=JUoqe0f1-B0",
+                description: "A visually stunning practical-effects commercial set on a moving undulating set, capturing youth emotion."
+            },
+            {
+                title: "CalorieMate – See You Light Up",
+                titleJp: "大塚製薬 カロリーメイト『見えないもの』",
+                year: "2021",
+                award: "ACC Gold",
+                format: "TV CM",
+                agency: "Hakuhodo",
+                production: "AOI Pro.",
+                bannerUrl: "https://img.youtube.com/vi/iYa7zCARahk/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=iYa7zCARahk",
+                description: "Cinematic portrait following students studying and training through hardship, highlighting unseen dedication."
+            },
+            {
+                title: "Suntory Boss Coffee – Alien Jones / 365 Steps",
+                titleJp: "サントリー BOSS『宇宙人ジョーンズ』",
+                year: "2021",
+                award: "ACC Craft Award",
+                format: "TV CM",
+                agency: "Dentsu",
+                production: "Tohoku Shinsha",
+                bannerUrl: "https://img.youtube.com/vi/o6IQdbEkaNI/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=o6IQdbEkaNI",
+                description: "Tommy Lee Jones continues his iconic role as an extraterrestrial examining the perseverance of Japanese workers."
+            },
+            {
+                title: "Suntory Orangina – Richard Gere",
+                titleJp: "サントリー オランジーナ『寅さん』",
+                year: "2012",
+                award: "ACC Gold",
+                format: "TV CM",
+                agency: "Yomiko",
+                production: "Tohoku Shinsha",
+                bannerUrl: "https://img.youtube.com/vi/D-B52PV876I/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=D-B52PV876I",
+                description: "Hollywood legend Richard Gere embodies Japan's beloved cinematic folk hero Tora-san."
+            },
+            {
+                title: "Cup Noodle – Hungry? Series",
+                titleJp: "日清食品 カップヌードル『hungry?』",
+                year: "2002",
+                award: "Cannes Grand Prix",
+                format: "TV CM",
+                agency: "Hakuhodo",
+                production: "Tohoku Shinsha",
+                bannerUrl: "https://img.youtube.com/vi/z8w0SfCodpY/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=z8w0SfCodpY",
+                description: "Legendary comedic campaign depicting primitive humans encountering giant prehistoric beasts."
+            },
+            {
+                title: "SoftBank – White Family / Otosan",
+                titleJp: "ソフトバンク 白戸家",
+                year: "2011",
+                award: "ACC Grand Prix",
+                format: "TV CM",
+                agency: "Dentsu",
+                production: "Tohoku Shinsha",
+                bannerUrl: "https://img.youtube.com/vi/YuEkPB-XYyo/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=YuEkPB-XYyo",
+                description: "Japan's longest-running television phenomenon featuring a family whose patriarch is a speaking Shiba Inu."
+            },
+            {
+                title: "Nike Japan – Impulse",
+                titleJp: "ナイキジャパン『動かしつづける。』",
+                year: "2020",
+                award: "ACC Gold",
+                format: "Online Film",
+                agency: "Wieden+Kennedy",
+                production: "AOI Pro.",
+                bannerUrl: "https://img.youtube.com/vi/_gkZ6jhytb8/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=_gkZ6jhytb8",
+                description: "Empowering narrative addressing social conformity through high-intensity sports choreography."
+            },
+            {
+                title: "Shiseido – High School Girl?",
+                titleJp: "資生堂『メイク女子の秘密』",
+                year: "2015",
+                award: "Cannes Gold",
+                format: "Online Film",
+                agency: "Watts of Tokyo",
+                production: "Tohoku Shinsha",
+                bannerUrl: "https://img.youtube.com/vi/XYMBoypvR8A/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=XYMBoypvR8A",
+                description: "Viral sensation utilizing one tracking shot that reveals a surprising twist on gender and cosmetic transformation."
+            },
+            {
+                title: "PlayStation – Gravity Cat",
+                titleJp: "PlayStation『重力猫』",
+                year: "2017",
+                award: "Cannes Gold",
+                format: "Online Film",
+                agency: "Hakuhodo",
+                production: "Spoon",
+                bannerUrl: "https://img.youtube.com/vi/iDkR_Buda70/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=iDkR_Buda70",
+                description: "Technical feat shot in a rotatable apartment set where gravity shifts constantly."
+            },
+            {
+                title: "Tsuruya Roofing Tiles – Roof Defenders",
+                titleJp: "鶴弥 防災瓦",
+                year: "2019",
+                award: "ACC Gold",
+                format: "TV CM",
+                agency: "Dentsu",
+                production: "Taiyo Kikaku",
+                bannerUrl: "https://img.youtube.com/vi/J5kEiX7TTKk/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=J5kEiX7TTKk",
+                description: "Hilarious physical comedy demonstrating roof durability by casting actors as literal tiles."
+            },
+            {
+                title: "Nintendo Switch – First Look",
+                titleJp: "任天堂 Nintendo Switch",
+                year: "2017",
+                award: "Archive",
+                format: "Online Film",
+                agency: "Dentsu",
+                production: "Geek Pictures",
+                bannerUrl: "https://img.youtube.com/vi/yLL3tfArVp8/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=yLL3tfArVp8",
+                description: "Product reveal focusing on seamlessly transitioning gameplay from home to portable lifestyle."
+            },
+            {
+                title: "JR Central – Christmas Express",
+                titleJp: "JR東海『クリスマス・エクスプレス』",
+                year: "1989",
+                award: "ACC Permanent Collection",
+                format: "TV CM",
+                agency: "Dentsu",
+                production: "Tohoku Shinsha",
+                bannerUrl: "https://img.youtube.com/vi/zFCkbut6ijM/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=zFCkbut6ijM",
+                description: "A timeless milestone in Japanese advertising capturing young lovers reuniting on bullet train stations."
+            },
+            {
+                title: "Suntory Whisky – Glass Harmony",
+                titleJp: "サントリー 響『Glass Harmony』",
+                year: "2014",
+                award: "ACC Craft Award",
+                format: "Online Film",
+                agency: "Hakuhodo",
+                production: "AOI Pro.",
+                bannerUrl: "https://img.youtube.com/vi/K-TYsAHbb18/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=K-TYsAHbb18",
+                description: "An elegant acoustic visual symphony playing musical notes using customized crystal whiskey glasses."
+            },
+            {
+                title: "Kagome – Wearable Tomato",
+                titleJp: "カゴメ『ウェアラブル トマト』",
+                year: "2015",
+                award: "Cannes Bronze",
+                format: "Online Film",
+                agency: "Hakuhodo",
+                production: "AOI Pro.",
+                bannerUrl: "https://img.youtube.com/vi/L3Mezeu6we4/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=L3Mezeu6we4",
+                description: "A deadpan engineering prank introducing a mechanical backpack that feeds fresh tomatoes to marathon runners."
+            },
+            {
+                title: "Glico Pocky – Share Happiness",
+                titleJp: "江崎グリコ ポッキー",
+                year: "2010",
+                award: "ACC Winner",
+                format: "TV CM",
+                agency: "Dentsu",
+                production: "Tohoku Shinsha",
+                bannerUrl: "https://img.youtube.com/vi/HZQs1RHfwpM/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=HZQs1RHfwpM",
+                description: "High-energy pop dance choreography showcasing group unity centered on iconic snack sticks."
+            },
+            {
+                title: "KFC Japan – Christmas Tradition",
+                titleJp: "ケンタッキー『クリスマスはケンタッキー』",
+                year: "2018",
+                award: "Archive",
+                format: "TV CM",
+                agency: "Hakuhodo",
+                production: "AOI Pro.",
+                bannerUrl: "https://img.youtube.com/vi/nCT1bIx37rs/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=nCT1bIx37rs",
+                description: "Warm holiday storytelling capturing Japan's unique cultural tradition of eating fried chicken during winter."
+            },
+            {
+                title: "Toyota – ReBORN",
+                titleJp: "トヨタ自動車『ReBORN』",
+                year: "2011",
+                award: "ACC Gold",
+                format: "TV CM",
+                agency: "Dentsu",
+                production: "Geek Pictures",
+                bannerUrl: "https://img.youtube.com/vi/WHw9uajFClw/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=WHw9uajFClw",
+                description: "A cinematic roadmap journey reimagining historical figures navigating modern Japanese highways."
+            },
+            {
+                title: "Soga Clothing – The Reverse Striptease",
+                titleJp: "SOGA『着るための反転』",
+                year: "2016",
+                award: "ACC Bronze",
+                format: "Online Film",
+                agency: "ADK",
+                production: "Taiyo Kikaku",
+                bannerUrl: "https://img.youtube.com/vi/eqa5pvTD9gg/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=eqa5pvTD9gg",
+                description: "Playful reverse-motion editing showing models getting fully dressed in high fashion through acrobatics."
+            },
+            {
+                title: "Mandom Gatsby – Moving Rubber",
+                titleJp: "マンダム ギャツビー『ムービングラバー』",
+                year: "2007",
+                award: "ACC Gold",
+                format: "TV CM",
+                agency: "Dentsu",
+                production: "Tohoku Shinsha",
+                bannerUrl: "https://img.youtube.com/vi/i-KYDTKIC_4/hqdefault.jpg",
+                videoUrl: "https://www.youtube.com/watch?v=i-KYDTKIC_4",
+                description: "Iconic pop-culture commercial featuring rhythmic hair styling routines set to catchy dance beats."
+            }
+        ];
+
+        function renderGrid(data) {
+            const grid = document.getElementById('archiveGrid');
+            document.getElementById('total-count').innerText = `${data.length} Projects`;
+            grid.innerHTML = '';
+
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-zinc-700 transition flex flex-col justify-between";
+                
+                // Fallbacks for missing data
+                const agency = item.agency ? item.agency : "Unknown";
+                const production = item.production ? item.production : "Unknown";
+                const award = item.award ? item.award : "Archive Entry";
+                const description = item.description ? item.description : "No description available for this entry.";
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-44 w-full bg-zinc-950 overflow-hidden">
+                            <img src="${item.bannerUrl}" alt="${item.title}" class="w-full h-full object-cover opacity-85 hover:scale-105 transition duration-300" onerror="this.src='https://via.placeholder.com/640x360.png?text=No+Thumbnail'">
+                            <span class="absolute top-3 left-3 bg-red-950/90 text-red-400 border border-red-800/60 text-xs px-2.5 py-0.5 rounded font-mono font-medium">${item.year}</span>
+                            <span class="absolute top-3 right-3 bg-zinc-950/80 text-zinc-300 text-xs px-2 py-0.5 rounded backdrop-blur">${item.format}</span>
+                        </div>
+
+                        <div class="p-5">
+                            <h2 class="text-base font-semibold text-white mb-1 line-clamp-2">${item.title}</h2>
+                            <p class="text-xs text-zinc-500 mb-3">${item.titleJp || ''}</p>
+                            
+                            <p class="text-xs text-zinc-300 mb-4 line-clamp-3 leading-relaxed">${description}</p>
+
+                            <div class="space-y-1 text-xs text-zinc-400 border-t border-zinc-800/80 pt-3">
+                                <div><span class="text-zinc-500">Award:</span> ${award}</div>
+                                <div><span class="text-zinc-500">Agency:</span> ${agency}</div>
+                                <div><span class="text-zinc-500">Production:</span> ${production}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 pt-0 mt-auto">
+                        <a href="${item.videoUrl}" target="_blank" class="w-full bg-zinc-800 hover:bg-red-600 text-white text-xs font-medium py-2.5 rounded-lg flex items-center justify-center gap-2 transition">
+                            <i class="fa-solid fa-play"></i> Watch Video
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        renderGrid(archiveData);
+
+        function filterData() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const year = document.getElementById('yearFilter').value;
+            const format = document.getElementById('formatFilter').value;
+
+            const filtered = archiveData.filter(item => {
+                const searchStr = `${item.title} ${item.agency || ''} ${item.description || ''} ${item.production || ''}`.toLowerCase();
+                const matchesSearch = searchStr.includes(search);
+                const matchesYear = year === 'ALL' || item.year === year || (!item.year && year === 'Unknown');
+                const matchesFormat = format === 'ALL' || (item.format && item.format.includes(format));
+                
+                return matchesSearch && matchesYear && matchesFormat;
+            });
+
+            renderGrid(filtered);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', filterData);
+        document.getElementById('yearFilter').addEventListener('change', filterData);
+        document.getElementById('formatFilter').addEventListener('change', filterData);
+    </script>
+</body>
+</html>
