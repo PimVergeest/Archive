@@ -60,7 +60,6 @@
 
     <script>
         const archiveData = [
-            // ACC 2025 Batch
             {
                 title: "SMBC Olive – The Bankbook Person",
                 titleJp: "三井住友銀行 Olive『通帳の人』",
@@ -133,8 +132,6 @@
                 videoUrl: "https://www.youtube.com/watch?v=3isIlJmwfPg",
                 description: "An energetic hype film featuring Japanese comedy duos preparing for the high-stakes national stand-up finals set to rock music."
             },
-
-            // Playlist / Individual Link Extractions
             {
                 title: "Pocari Sweat – Demo Kumo ga Aeta",
                 titleJp: "大塚製薬 ポカリスエット『でも心が揺れた』",
@@ -374,7 +371,6 @@
                 const card = document.createElement('div');
                 card.className = "bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-zinc-700 transition flex flex-col justify-between";
                 
-                // Fallbacks for missing data
                 const agency = item.agency ? item.agency : "Unknown";
                 const production = item.production ? item.production : "Unknown";
                 const award = item.award ? item.award : "Archive Entry";
